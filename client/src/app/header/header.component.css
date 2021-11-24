@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 1px 1px rgba(117, 183, 158, .2);
+  padding: 10px 20px;
+}
+
+.btn-header {
+  text-decoration: none;
+  color: #52734D;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: .5s;
+}
+
+h2 {
+  color: #52734D;
+}
+
+.btn-header:hover {
+  background: #DDFFBC;
+}

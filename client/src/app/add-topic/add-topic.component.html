@@ -1,0 +1,53 @@
+<form [formGroup]="this.formGroup">
+
+  <div class="form-field">
+    <textarea
+              placeholder="Topic title"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              [value]="topic.title"
+              (focusout)="textAreaFocusOut()"
+              (focusin)="textAreaFocusIn()"
+    >
+    </textarea>
+    <div [ngClass]="{'underline__focused' : isFocused === true, 'underline' : isFocused === false}"></div>
+  </div>
+
+  <div *ngFor="let question of this.topic.questionPages[currentPage].questions; let question_index =index" class="form-field">
+    <div class="question-menu">
+      <fa-icon [icon]="faTimesCircle" (click)="deleteQuestionClick(question_index)"></fa-icon>
+    </div>
+<!--    Input question-->
+    <input placeholder="Question {{ question_index + 1 }}"
+           type="text" id="question-input-{{ question_index }}"
+           class="question-input"
+           (change)="questionChange(question_index, $event)"
+           [value]="question.title">
+
+<!--    Question answers-->
+    <div class="answer-row" *ngFor="let answer of question.answers; let answer_index = index">
+      <input
+        placeholder="Answer {{ answer_index + 1 }}"
+        type="text">
+      <fa-icon class="btn-delete" [icon]="faTrash"></fa-icon>
+    </div>
+    <div class="answer-row">
+      <input
+        (click)="buttonAddAnswerClick(question)"
+        placeholder="Add answer"
+        type="text">
+    </div>
+  </div>
+  <div class="form-field">
+    <input placeholder="Add question"
+           type="text"
+           class="question-input"
+           (click)="buttonAddQuestionClick()">
+  </div>
+  <div class="form-field">
+    <a class="btn-create" (click)="buttonCreateTopicClick()">
+      Create
+    </a>
+  </div>
+</form>
+
